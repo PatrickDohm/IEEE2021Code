@@ -1,6 +1,10 @@
 //PWMSine.c
-/* This program generates a PWM sinusoidal signal on PA6 using Timer 3.
+/* This program generates a PWM signal on PA6 using Timer 3.
     The signal has 12-bits of resolution. 
+	
+	
+	*edit made by Patrick Dohm
+	My goal is to have a servo flip between 0 and 180 degrees
 */
 #include "stm32f446.h"
 #include "math.h"
@@ -49,16 +53,15 @@ int main()
 	 
 	 
 	 //HS 311 requires pulse cycle of 20ms
-	 //I need to use prescaling to get it to 50 hz
+	 //I need to use ARR to get it to 50 hz
 	 
 	 
 	 
 	 while(1)
-     {TIM3_CCR1 = 2666;
-      //for(i=0;i<100;i++); //Delay 
-      x += incr;
-			tmp = (int)((sin(x) + 1)*1500);
-      if(x >= 2*PI)
-         x = 0;
+     {TIM3_CCR1 = 14400;
+      for(i=0;i<100;i++); //Delay 
+			TIM3_CCR1 = 33600;
+			 for(int i=0;i<100;i++);//delay
+      
      }
   }
